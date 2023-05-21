@@ -1,5 +1,5 @@
 <?php
-$name = $database->escapeSQL($router->getParam('name'));
+$name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {

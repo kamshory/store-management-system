@@ -1,5 +1,5 @@
 <?php
-$id = $database->escapeSQL($router->getParam('id'));
+$id = $router->getParam('id', true);
 $sql = "SELECT manufacture.*
 FROM manufacture 
 WHERE manufacture.active = TRUE 

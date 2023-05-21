@@ -1,5 +1,5 @@
 <?php
-$name = $database->escapeSQL($router->getParam('name'));
+$name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
@@ -9,7 +9,7 @@ $sql = "SELECT brand.brand_id, brand.name
 FROM brand 
 WHERE brand.active = TRUE 
 $filter
-ORDER BY brand.sort_order ASC
+ORDER BY brand.sort_order ASC 
 ";
 $data = $database->fetchAssocAll($sql);
 (new \Pico\Api\PicoRestResponse())->sendJSON($data, true);

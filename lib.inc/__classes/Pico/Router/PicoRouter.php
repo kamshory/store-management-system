@@ -51,14 +51,23 @@ class PicoRouter
     /**
      * Get param value with param name given
      *
-     * @param string $name
+     * @param string $name Parameter name
+     * @param bool $escapeSQL Escape SQL
      * @return string|null
      */
-    public function getParam($name)
+    public function getParam($name, $escapeSQL = false)
     {
         if($name != null && isset($this->params[$name]))
         {
-            return trim($this->params[$name]);
+            $value = trim($this->params[$name]);
+            if($escapeSQL)
+            {
+                return addslashes($value);
+            }
+            else
+            {
+                return $value;
+            }
         }
         return null;
     }

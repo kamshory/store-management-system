@@ -1,11 +1,11 @@
 <?php
-$name = $database->escapeSQL($router->getParam('name'));
+$name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
     $filter .= " AND item_category.name like '%$name%' ";
 }
-$sql = "SELECT item_category.*
+$sql = "SELECT item_category.* 
 FROM item_category 
 WHERE item_category.active = TRUE 
 $filter

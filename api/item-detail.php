@@ -1,6 +1,6 @@
 <?php
-$id = $database->escapeSQL($router->getParam('id'));
-$code = $database->escapeSQL($router->getParam('code'));
+$id = $router->getParam('id', true);
+$code = $router->getParam('code', true);
 $filter = "";
 if($item_id != null)
 {
@@ -10,7 +10,7 @@ if($code != null)
 {
     $filter .= " AND item.code = '$code' ";
 }
-$sql = "SELECT item.*
+$sql = "SELECT item.* 
 FROM item 
 WHERE item.active = TRUE 
 $filter
