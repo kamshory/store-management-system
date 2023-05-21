@@ -1,6 +1,6 @@
 <?php
-$item_id = $router->escapeSql($router->getParams('item_id'));
-$code = $router->escapeSql($router->getParams('code'));
+$item_id = $router->escapeSql($router->getParam('item_id'));
+$code = $router->escapeSql($router->getParam('code'));
 $filter = "";
 if($item_id != null)
 {

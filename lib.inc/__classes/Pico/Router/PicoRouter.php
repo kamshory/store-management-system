@@ -2,11 +2,10 @@
 namespace Pico\Router;
 class PicoRouter
 {
-
     /**
      * URI
      *
-     * @var string $uri
+     * @var string
      */
     public $uri = null;
 
@@ -27,7 +26,7 @@ class PicoRouter
     /**
      * Module
      *
-     * @var string $module
+     * @var string
      */
     public $module = null;
 
@@ -40,7 +39,23 @@ class PicoRouter
         $this->module = $module;
     }
 
-    public function getParams($name)
+    /**
+     * Get params parsed from path
+     *
+     * @return array
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    /**
+     * Get param value with param name given
+     *
+     * @param string $name
+     * @return string|null
+     */
+    public function getParam($name)
     {
         if($name != null && isset($this->params[$name]))
         {
@@ -48,6 +63,13 @@ class PicoRouter
         }
         return null;
     }
+
+    /**
+     * Escape SQL
+     *
+     * @param string $value
+     * @return string|null
+     */
     public function escapeSql($value)
     {
         if($value == null)
@@ -74,26 +96,26 @@ class PicoRouter
             $path = substr($path, 0, strlen($path)-1);
         }
         $path2 = $path . "/";
-        $ch1 = isset($map[$path]) ? $map[$path] : null;
-        if($ch1 === null)
+        $module = isset($map[$path]) ? $map[$path] : null;
+        if($module === null)
         {
-            $ch1 = isset($map[$path2]) ? $map[$path2] : null;
+            $module = isset($map[$path2]) ? $map[$path2] : null;
         }
-        if($ch1 === null)
+        if($module === null)
         {
             $index = $this->getIndex($map, $path2);
             if($index !== null)
             {
-                $ch1 = $map[$index];
+                $module = $map[$index];
             }
         }
 
-        if($ch1 === null)
+        if($module === null)
         {
             $parsed = $this->parseRegex($map, $path2);
             if($parsed != null)
             {
-                $ch1 = $parsed['module'];
+                $module = $parsed['module'];
                 $this->params = $parsed['params'];
                 $this->arguments = $parsed['arguments'];
             }
@@ -101,7 +123,7 @@ class PicoRouter
         }
 
         $this->uri = $path;
-        $this->module = $ch1;
+        $this->module = $module;
         return $this;
     }
 
@@ -148,32 +170,26 @@ class PicoRouter
 
     public function parsePattern($pattern, $url)
     {
-        // The url part
-        //$url     = "/node/123/hello/strText";
-        // The pattern part
-        //$pattern = "/node/:id/hello/:test";
-
-        // Replace all variables with * using regex
         $buffer = preg_replace("(:[A-Za-z_]+)", "*", $pattern);
-        // Explode to get strings at *
-        // In this case ['/node/','/hello/']
         $buffer = explode("*", $buffer);
         array_pop($buffer);
-        // Control variables for loop execution
         $isMatch = true;
         $capture  = [];
-        for ($i=0; $i < sizeof($buffer); $i++) { 
+        for ($i=0; $i < sizeof($buffer); $i++) 
+        { 
             $slug = $buffer[$i];
             $real_slug = substr($url, 0 , strlen($slug));
-            if (!strcmp($slug, $real_slug)) {
+            if (!strcmp($slug, $real_slug)) 
+            {
                 $url = substr($url, strlen($slug));
                 $temp = explode("/", $url)[0];
                 $capture[sizeof($capture)] = $temp;
                 $url = substr($url,strlen($temp));
-            }else {
+            }
+            else 
+            {
                 $isMatch = false;
             }
-
         }
         if($isMatch)
         {
@@ -181,7 +197,6 @@ class PicoRouter
         }
         return null;
     }
-
 
     public function createUriPattern($key)
     {

@@ -1,5 +1,5 @@
 <?php
-$brand_id = $router->escapeSql($router->getParams('brand_id'));
+$brand_id = $router->escapeSql($router->getParam('brand_id'));
 $sql = "SELECT brand.*
 FROM brand 
 WHERE brand.active = TRUE 
