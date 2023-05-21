@@ -9,3 +9,4 @@
 <IfModule mod_autoindex.c>
 	Options -Indexes
 </IfModule>
+DirectoryIndex __router__.php

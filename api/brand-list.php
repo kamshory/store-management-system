@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__."/__router__.php";
-
 $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)

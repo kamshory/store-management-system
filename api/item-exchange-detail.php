@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__."/__router__.php";
-
 $id = $router->getParam('id', true);
 $sql = "SELECT item_exchange.* 
 FROM item_exchange 
