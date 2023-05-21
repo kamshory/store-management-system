@@ -1,22 +1,14 @@
 <?php
-
 require_once dirname(__DIR__)."/lib.config/config.php";
 require_once dirname(__DIR__)."/lib.inc/autoload.php";
+require_once __DIR__."/__map__.php";
 
 $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null;
 $php_self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : null;
 
-$map = array(
-    '/' => 'home.php',
-    '/brand/list/{name}' => 'brand-list.php',
-    '/brand/detail/{brand_id}' => 'brand-detail.php',
-    '/item/detail/{item_id}' => 'item-detail.php',
-    '/item/code/{code}' => 'item-detail.php',
-	'/item-category/list/{name}' => 'item-category-list.php'
-);
 
 $router = new \Pico\Router\PicoRouter();
-$router->parseUri($map, $request_uri, $php_self);
+$router->parseUri($routing_map, $request_uri, $php_self);
 
 $database = new \Pico\Database\PicoDatabase(
 	(new \Pico\Database\PicoDatabaseCredentials())->load($databaseConfigs->config_file),

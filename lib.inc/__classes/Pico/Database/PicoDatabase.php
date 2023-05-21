@@ -311,4 +311,19 @@ class PicoDatabase extends \PDO
 	{
 		return $this->databaseCredentials;
 	}
+
+	/**
+     * Escape SQL
+     *
+     * @param string $value
+     * @return string|null
+     */
+    public function escapeSQL($value)
+    {
+        if($value == null)
+        {
+            return null;
+        }
+        return addslashes($value);
+    }
 }

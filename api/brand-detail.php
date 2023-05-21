@@ -1,9 +1,10 @@
 <?php
-$brand_id = $router->escapeSql($router->getParam('brand_id'));
+$id = $database->escapeSQL($router->getParam('id'));
 $sql = "SELECT brand.*
 FROM brand 
 WHERE brand.active = TRUE 
-AND brand.brand_id = '$brand_id'
+AND brand.brand_id = '$id'
 ";
 $data = $database->fetchAssoc($sql);
-(new \Pico\Api\PicoRestResponse())->sendOutput(json_encode($data), 'json');
+(new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
+exit();

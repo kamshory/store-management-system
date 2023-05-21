@@ -63,20 +63,6 @@ class PicoRouter
         return null;
     }
 
-    /**
-     * Escape SQL
-     *
-     * @param string $value
-     * @return string|null
-     */
-    public function escapeSql($value)
-    {
-        if($value == null)
-        {
-            return null;
-        }
-        return addslashes($value);
-    }
     public function parseUri($map, $request_uri, $php_self)
     {
         $arr = explode('?', $request_uri);

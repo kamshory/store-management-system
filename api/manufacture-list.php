@@ -3,13 +3,13 @@ $name = $database->escapeSQL($router->getParam('name'));
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND brand.name like '%$name%' ";
+    $filter .= " AND manufacture.name like '%$name%' ";
 }
-$sql = "SELECT brand.brand_id, brand.name 
-FROM brand 
-WHERE brand.active = TRUE 
+$sql = "SELECT manufacture.manufacture_id, manufacture.name 
+FROM manufacture 
+WHERE manufacture.active = TRUE 
 $filter
-ORDER BY brand.sort_order ASC
+ORDER BY manufacture.sort_order ASC
 ";
 $data = $database->fetchAssocAll($sql);
 (new \Pico\Api\PicoRestResponse())->sendJSON($data, true);

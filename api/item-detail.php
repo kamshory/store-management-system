@@ -1,10 +1,10 @@
 <?php
-$item_id = $router->escapeSql($router->getParam('item_id'));
-$code = $router->escapeSql($router->getParam('code'));
+$id = $database->escapeSQL($router->getParam('id'));
+$code = $database->escapeSQL($router->getParam('code'));
 $filter = "";
 if($item_id != null)
 {
-    $filter .= " AND item.item_id = '$item_id' ";
+    $filter .= " AND item.item_id = '$id' ";
 }
 if($code != null)
 {
@@ -16,4 +16,5 @@ WHERE item.active = TRUE
 $filter
 ";
 $data = $database->fetchAssocAll($sql);
-print_r($sql);
+(new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
+exit();

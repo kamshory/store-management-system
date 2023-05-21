@@ -1,5 +1,5 @@
 <?php
-$name = $router->escapeSql($router->getParam('name'));
+$name = $database->escapeSQL($router->getParam('name'));
 $filter = "";
 if($name != null)
 {
@@ -11,4 +11,5 @@ WHERE item_category.active = TRUE
 $filter
 ";
 $data = $database->fetchAssocAll($sql);
-print_r($sql);
+(new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
+exit();
