@@ -5,6 +5,9 @@ $routing_map = array(
     '/brand/list/{name}' => 'brand-list.php',
     '/brand/detail/{id}' => 'brand-detail.php',
 
+    '/color/list/{name}' => 'color-list.php',
+    '/color/detail/{id}' => 'color-detail.php',
+
     '/item-category/list/{name}' => 'item-category-list.php',
     '/item-category/detail/{id}' => 'item-category-detail.php',
 
