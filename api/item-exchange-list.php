@@ -3,13 +3,13 @@ $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND item_category.name like '%$name%' ";
+    $filter .= " AND item_exchange.name like '%$name%' ";
 }
-$sql = "SELECT item_category.* 
-FROM item_category 
-WHERE item_category.active = TRUE 
+$sql = "SELECT item_exchange.* 
+FROM item_exchange 
+WHERE item_exchange.active = TRUE 
 $filter
-ORDER BY item_category.sort_order ASC 
+ORDER BY item_exchange.sort_order ASC 
 ";
 $data = $database->fetchAssocAll($sql);
 (new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
