@@ -15,7 +15,5 @@ FROM item
 WHERE item.active = TRUE 
 $filter
 ";
-$data = $database
-    ->executeQuery($sql)
-    ->fetch(\PDO::FETCH_ASSOC);
+$data = $database->fetchAssocAll($sql);
 print_r($sql);

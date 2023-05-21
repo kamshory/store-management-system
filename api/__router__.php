@@ -8,10 +8,11 @@ $php_self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : null;
 
 $map = array(
     '/' => 'home.php',
-    '/brand/list' => 'brand-list.php',
+    '/brand/list/{name}' => 'brand-list.php',
     '/brand/detail/{brand_id}' => 'brand-detail.php',
     '/item/detail/{item_id}' => 'item-detail.php',
-    '/item/code/{code}' => 'item-detail.php'
+    '/item/code/{code}' => 'item-detail.php',
+	'/item-category/list/{name}' => 'item-category-list.php'
 );
 
 $router = new \Pico\Router\PicoRouter();

@@ -5,7 +5,5 @@ FROM brand
 WHERE brand.active = TRUE 
 AND brand.brand_id = '$brand_id'
 ";
-$data = $database
-    ->executeQuery($sql)
-    ->fetch(\PDO::FETCH_ASSOC);
-print_r($data);
+$data = $database->fetchAssoc($sql);
+(new \Pico\Api\PicoRestResponse())->sendOutput(json_encode($data), 'json');

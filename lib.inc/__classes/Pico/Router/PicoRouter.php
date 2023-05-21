@@ -102,7 +102,7 @@ class PicoRouter
         }
         if($module === null)
         {
-            $index = $this->getIndex($map, $path2);
+            $index = $this->getWildcard($map, $path2);
             if($index !== null)
             {
                 $module = $map[$index];
@@ -214,7 +214,7 @@ class PicoRouter
         
     }
 
-    public function getIndex($map, $path2)
+    public function getWildcard($map, $path2)
     {
         foreach($map as $key=>$val)
         {
