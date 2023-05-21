@@ -33,10 +33,8 @@ class PicoRouter
     public $params = array();
     public $arguments = array();
 
-    public function __construct($uri = null, $module = null)
+    public function __construct()
     {
-        $this->uri = $uri;
-        $this->module = $module;
     }
 
     /**
