@@ -35,6 +35,7 @@ class PicoRouter
 
     public function __construct()
     {
+        // Do nothing
     }
 
     /**
