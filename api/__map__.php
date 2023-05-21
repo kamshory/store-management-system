@@ -20,6 +20,9 @@ $routing_map = array(
     '/supplier/list/{name}' => 'supplier-list.php',
     '/supplier/detail/{id}' => 'supplier-detail.php',
 
+    '/warehouse/list/{name}' => 'warehouse-list.php',
+    '/warehouse/detail/{id}' => 'warehouse-detail.php',
+
     '/manufacture/list/{name}' => 'manufacture-list.php',
     '/manufacture/detail/{id}' => 'manufacture-detail.php',
 
