@@ -1,7 +1,7 @@
 <?php
 namespace Pico\Api;
-class PicoRestResponse{
-
+class PicoRestResponse
+{
     /**
      * Send response headers and response body to client
      *

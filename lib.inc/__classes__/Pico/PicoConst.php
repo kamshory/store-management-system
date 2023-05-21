@@ -1,5 +1,6 @@
 <?php
 namespace Pico;
-class PicoConst{
+class PicoConst
+{
     const NEW_LINE = "\r\n";
 }

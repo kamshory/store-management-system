@@ -5,7 +5,7 @@ class PicoApi
     /**
      * Database
      *
-     * @var \Pico\Database\PicoDatabase $database
+     * @var \Pico\Database\PicoDatabase 
      */
     private $database = null;
 

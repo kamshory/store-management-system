@@ -9,7 +9,7 @@ $databaseConfigs->db_host = "localhost";
 $databaseConfigs->db_port = 3306;
 $databaseConfigs->db_user = "root";
 $databaseConfigs->db_pass = "alto1234";
-$databaseConfigs->db_name = "mini_picopi";
+$databaseConfigs->db_name = "store_management_system";
 $databaseConfigs->db_time_zone = "Asia/Jakarta";
 $databaseConfigs->config_file = $twoLevelUp."/db.ini";
 

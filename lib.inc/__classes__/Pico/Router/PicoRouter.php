@@ -49,7 +49,7 @@ class PicoRouter
     }
 
     /**
-     * Get param value with param name given
+     * Get parameter value with parameter name given
      *
      * @param string $name Parameter name
      * @param bool $escapeSQL Escape SQL

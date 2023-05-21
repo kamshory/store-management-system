@@ -52,7 +52,8 @@ class PicoDatabase extends \PDO
 		$ret = false;
 		date_default_timezone_set($this->databaseCredentials->getTimezone());
 		$timezoneOffset = date("P");
-		try {
+		try 
+		{
 			$connectionString = $this->databaseCredentials->getDriver() . ':host=' . $this->databaseCredentials->getHost() . '; port=' . $this->databaseCredentials->getPort() . '; dbname=' . $this->databaseCredentials->getDatabaseName();
 
 			parent::__construct(
@@ -66,7 +67,9 @@ class PicoDatabase extends \PDO
 			);
 
 			$ret = true;
-		} catch (\PDOException $e) {
+		} 
+		catch (\PDOException $e) 
+		{
 			echo "Connection error " . $e->getMessage();
 			$ret = false;
 		}
@@ -93,14 +96,20 @@ class PicoDatabase extends \PDO
 	{
 		$result = array();
 		$stmt = $this->prepare($sql);
-		try {
+		try 
+		{
 			$stmt->execute();
-			if ($stmt->rowCount() > 0) {
+			if ($stmt->rowCount() > 0) 
+			{
 				$result = $stmt->fetch(\PDO::FETCH_ASSOC);
-			} else {
+			} 
+			else 
+			{
 				$result = $defaultValue;
 			}
-		} catch (\PDOException $e) {
+		} 
+		catch (\PDOException $e) 
+		{
 			$result = $defaultValue;
 		}
 		return $result;
@@ -117,14 +126,20 @@ class PicoDatabase extends \PDO
 	{
 		$result = array();
 		$stmt = $this->prepare($sql);
-		try {
+		try 
+		{
 			$stmt->execute();
-			if ($stmt->rowCount() > 0) {
+			if ($stmt->rowCount() > 0) 
+			{
 				$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-			} else {
+			} 
+			else 
+			{
 				$result = $defaultValue;
 			}
-		} catch (\PDOException $e) {
+		} 
+		catch (\PDOException $e) 
+		{
 			$result = $defaultValue;
 		}
 		return $result;
@@ -137,9 +152,12 @@ class PicoDatabase extends \PDO
 	public function execute($sql)
 	{
 		$stmt = $this->prepare($sql);
-		try {
+		try 
+		{
 			$stmt->execute();
-		} catch (\PDOException $e) {
+		} 
+		catch (\PDOException $e) 
+		{
 			// Do nothing
 		}
 	}
@@ -152,9 +170,12 @@ class PicoDatabase extends \PDO
 	public function executeQuery($sql)
 	{
 		$stmt = $this->prepare($sql);
-		try {
+		try 
+		{
 			$stmt->execute();
-		} catch (\PDOException $e) {
+		} 
+		catch (\PDOException $e) 
+		{
 			echo $e->getMessage() . "\r\nERROR &raquo; $sql";
 		}
 		return $stmt;
@@ -169,12 +190,16 @@ class PicoDatabase extends \PDO
 	private function executeAndSync($sql, $sync)
 	{
 		$stmt = $this->prepare($sql);
-		try {
+		try 
+		{
 			$stmt->execute();
-		} catch (\PDOException $e) {
+		} 
+		catch (\PDOException $e) 
+		{
 			echo $e->getMessage() . "\r\nERROR &raquo; $sql";
 		}
-		if ($sync) {
+		if ($sync) 
+		{
 			$this->createSync($sql);
 		}
 		return $stmt;
@@ -260,9 +285,12 @@ class PicoDatabase extends \PDO
 		$sql = "SELECT * FROM `pico_system_variable` 
 		WHERE `system_variable_id` = '$variableName' ";
 		$data = $this->executeQuery($sql)->fetch(\PDO::FETCH_ASSOC);
-		if (isset($data) && is_array($data) && !empty($data)) {
+		if (isset($data) && is_array($data) && !empty($data)) 
+		{
 			return $data['system_value'];
-		} else {
+		} 
+		else 
+		{
 			return $defaultValue;
 		}
 	}
@@ -280,12 +308,15 @@ class PicoDatabase extends \PDO
 		$value = addslashes($value);
 		$sql = "SELECT * FROM `pico_system_variable` 
 		WHERE `system_variable_id` = '$variableName' ";
-		if ($this->executeQuery($sql)->rowCount() > 0) {
+		if ($this->executeQuery($sql)->rowCount() > 0) 
+		{
 			$sql = "UPDATE `pico_system_variable` 
 			SET `system_value` = '$value', `time_edit` = '$currentTime' 
 			WHERE `system_variable_id` = '$variableName' ";
 			$this->executeUpdate($sql, $sync);
-		} else {
+		} 
+		else 
+		{
 			$sql = "INSERT INTO `pico_system_variable` 
 			(`system_variable_id`, `system_value`, `time_create`, `time_edit`) VALUES
 			('$variableName', '$value', '$currentTime' , '$currentTime')
