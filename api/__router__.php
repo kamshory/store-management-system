@@ -31,7 +31,8 @@ $database = new \Pico\Database\PicoDatabase(
 );
 
 $database->connect();
-
-$file = __DIR__ . "/". $router->module;
-
-require_once $file;
+if($router->module != null)
+{
+	$file = __DIR__ . "/". $router->module;
+	require_once $file;
+}
