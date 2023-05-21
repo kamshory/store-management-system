@@ -52,7 +52,7 @@ class PicoRouter
      * Get parameter value with parameter name given
      *
      * @param string $name Parameter name
-     * @param bool $escapeSQL Escape SQL
+     * @param boolean $escapeSQL Escape SQL
      * @return string|null
      */
     public function getParam($name, $escapeSQL = false)

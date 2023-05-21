@@ -20,12 +20,8 @@ class PicoDatabase extends \PDO
 	private $databaseSyncConfig;
 
 	/**
-	 * Summary of __construct
+	 * Constructor
 	 * @param \Pico\Database\PicoDatabaseCredentials $databaseCredentials
-	 * @param string $username
-	 * @param string $password
-	 * @param string $databaseName
-	 * @param string $timezone
 	 * @param \Pico\Database\PicoDatabaseSyncConfig $databaseSyncConfig
 	 */
 	public function __construct($databaseCredentials, $databaseSyncConfig) //NOSONAR

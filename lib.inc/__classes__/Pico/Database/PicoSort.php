@@ -1,7 +1,8 @@
 <?php
 namespace Pico\Database;
 
-class PicoSort{
+class PicoSort
+{
     private $orderBy = "";
     private $orderType = "";
 
