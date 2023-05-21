@@ -257,7 +257,7 @@ class PicoDatabase extends \PDO
 	public function getSystemVariable($variableName, $defaultValue = null)
 	{
 		$variableName = addslashes($variableName);
-		$sql = "SELECT * FROM `edu_system_variable` 
+		$sql = "SELECT * FROM `pico_system_variable` 
 		WHERE `system_variable_id` = '$variableName' ";
 		$data = $this->executeQuery($sql)->fetch(\PDO::FETCH_ASSOC);
 		if (isset($data) && is_array($data) && !empty($data)) {
@@ -278,15 +278,15 @@ class PicoDatabase extends \PDO
 		$currentTime = date('Y-m-d H:i:s');
 		$variableName = addslashes($variableName);
 		$value = addslashes($value);
-		$sql = "SELECT * FROM `edu_system_variable` 
+		$sql = "SELECT * FROM `pico_system_variable` 
 		WHERE `system_variable_id` = '$variableName' ";
 		if ($this->executeQuery($sql)->rowCount() > 0) {
-			$sql = "UPDATE `edu_system_variable` 
+			$sql = "UPDATE `pico_system_variable` 
 			SET `system_value` = '$value', `time_edit` = '$currentTime' 
 			WHERE `system_variable_id` = '$variableName' ";
 			$this->executeUpdate($sql, $sync);
 		} else {
-			$sql = "INSERT INTO `edu_system_variable` 
+			$sql = "INSERT INTO `pico_system_variable` 
 			(`system_variable_id`, `system_value`, `time_create`, `time_edit`) VALUES
 			('$variableName', '$value', '$currentTime' , '$currentTime')
 			";
