@@ -1,6 +1,6 @@
 <?php
-namespace Pico;
-class Router
+namespace Pico\Router;
+class PicoRouter
 {
 
     /**

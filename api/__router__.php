@@ -14,7 +14,7 @@ $map = array(
     '/item/code/{code}' => 'item-detail.php'
 );
 
-$router = (new \Pico\Router())->parseUri($map, $request_uri, $php_self);
+$router = (new \Pico\Router\PicoRouter())->parseUri($map, $request_uri, $php_self);
 $database = new \Pico\Database\PicoDatabase(
 	(new \Pico\Database\PicoDatabaseCredentials())->load($databaseConfigs->config_file),
 	new \Pico\Database\PicoDatabaseSyncConfig(
