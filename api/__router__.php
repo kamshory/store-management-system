@@ -29,10 +29,13 @@ $database = new \Pico\Database\PicoDatabase(
 		$syncConfigs->sync_database_delimiter
 	)
 );
-
 $database->connect();
+
 if($router->module != null)
 {
 	$file = __DIR__ . "/". $router->module;
-	require_once $file;
+	if(file_exists($file))
+	{
+		require_once $file;
+	}
 }
