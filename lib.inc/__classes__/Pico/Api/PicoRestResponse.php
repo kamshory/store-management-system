@@ -13,7 +13,7 @@ class PicoRestResponse
     public function sendJSON($data, $prettify = false, $headers = null)
     {
         $body = null;
-        if($data != null && (is_array($data) || is_object($data)))
+        if($data != null)
         {
             if($prettify)
             {

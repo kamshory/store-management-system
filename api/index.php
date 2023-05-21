@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__."/__router__.php";
 $data = array();
-(new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
+$restResponse->sendJSON($data, true);
 exit();

@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__."/__router__.php";
+
 $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
@@ -12,5 +14,5 @@ $filter
 ORDER BY manufacture.sort_order ASC
 ";
 $data = $database->fetchAssocAll($sql);
-(new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
+$restResponse->sendJSON($data, true);
 exit();

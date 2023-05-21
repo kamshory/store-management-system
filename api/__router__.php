@@ -24,6 +24,8 @@ $database = new \Pico\Database\PicoDatabase(
 );
 $database->connect();
 
+$restResponse = new \Pico\Api\PicoRestResponse();
+
 if($router->module != null)
 {
 	$file = __DIR__ . "/". $router->module;

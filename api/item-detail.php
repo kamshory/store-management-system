@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__."/__router__.php";
+
 $id = $router->getParam('id', true);
 $code = $router->getParam('code', true);
 $filter = "";
@@ -16,5 +18,5 @@ WHERE item.active = TRUE
 $filter
 ";
 $data = $database->fetchAssocAll($sql);
-(new \Pico\Api\PicoRestResponse())->sendJSON($data, true);
+$restResponse->sendJSON($data, true);
 exit();
