@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__DIR__)."/lib.config/config.php";
-require_once dirname(__DIR__)."/lib.inc/autoload.php";
-require_once __DIR__."/__map__.php";
+require_once dirname(__DIR__) . "/lib.config/config.php";
+require_once dirname(__DIR__) . "/lib.inc/autoload.php";
+require_once __DIR__ . "/__map__.php";
 
 $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null;
 $php_self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : null;
@@ -10,8 +10,7 @@ $php_self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : null;
 $router = new \Pico\Router\PicoRouter();
 $router->parseUri($routing_map, $request_uri, $php_self);
 
-if($router->getModule() != null)
-{
+if ($router->getModule() != null) {
 	$database = new \Pico\Database\PicoDatabase(
 		(new \Pico\Database\PicoDatabaseCredentials())->load($databaseConfigs->config_file),
 		new \Pico\Database\PicoDatabaseSyncConfig(
@@ -25,12 +24,11 @@ if($router->getModule() != null)
 		)
 	);
 	$database->connect();
-	
+
 	$restResponse = new \Pico\Api\PicoRestResponse();
 
-	$file = __DIR__ . "/". $router->getModule();
-	if(file_exists($file))
-	{
+	$file = __DIR__ . "/" . $router->getModule();
+	if (file_exists($file)) {
 		require_once $file;
 	}
 }
