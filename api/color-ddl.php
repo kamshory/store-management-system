@@ -3,7 +3,7 @@ $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND color.name LIKE '%$name%' ";
+    $filter .= " AND LOWER(color.name) LIKE LOWER('%$name%') ";
 }
 $sql = "SELECT color.color_id AS id, color.name 
 FROM color 

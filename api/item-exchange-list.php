@@ -3,7 +3,7 @@ $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND item_exchange.name LIKE '%$name%' ";
+    $filter .= " AND LOWER(item_exchange.name) LIKE LOWER('%$name%') ";
 }
 $sql = "SELECT item_exchange.* 
 FROM item_exchange 

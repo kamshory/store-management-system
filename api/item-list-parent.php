@@ -4,11 +4,11 @@ $code = $router->getParam('code', true);
 $filter = "";
 if($id != null)
 {
-    $filter .= " AND item.item_child = '$id' ";
+    $filter .= " AND LOWER(item.item_child = '$id' ";
 }
 if($code != null)
 {
-    $filter .= " AND item.item_child = (SELECT i.item_id FROM item AS i WHERE i.code = '$code') ";
+    $filter .= " AND LOWER(item.item_child = (SELECT i.item_id FROM item AS i WHERE i.code = '$code') ";
 }
 $sql = "SELECT item.* 
 FROM item 

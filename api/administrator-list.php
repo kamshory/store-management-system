@@ -3,7 +3,7 @@ $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND administrator.name LIKE '%$name%' ";
+    $filter .= " AND LOWER(administrator.name) LIKE LOWER('%$name%') ";
 }
 $sql = "SELECT administrator.* 
 FROM administrator 
