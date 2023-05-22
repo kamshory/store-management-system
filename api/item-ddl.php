@@ -1,20 +1,16 @@
 <?php
-$id = $router->getParam('id', true);
-$code = $router->getParam('code', true);
+$name = $router->getParam('name', true);
 $filter = "";
-if($id != null)
+if($name != null)
 {
-    $filter .= " AND item.item_id = '$id' ";
-}
-if($code != null)
-{
-    $filter .= " AND item.code = '$code' ";
+    $filter .= " AND item.name LIKE '%$name%' ";
 }
 $sql = "SELECT item.item_id AS id, item.name 
 FROM item 
 WHERE item.active = TRUE 
 $filter
+ORDER BY item.sort_order ASC 
 ";
-$data = $database->fetchAssoc($sql, array());
+$data = $database->fetchAssocAll($sql);
 $restResponse->sendJSON($data, true);
 exit();
