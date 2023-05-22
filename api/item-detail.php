@@ -15,6 +15,6 @@ FROM item
 WHERE item.active = TRUE 
 $filter
 ";
-$data = $database->fetchAssocAll($sql);
+$data = $database->fetchAssoc($sql, array());
 $restResponse->sendJSON($data, true);
 exit();
