@@ -5,6 +5,6 @@ FROM item_category
 WHERE item_category.active = TRUE 
 AND item_category.item_category_id = '$id' 
 ";
-$data = $database->fetchAssoc($sql);
+$data = $database->fetchAssoc($sql, array());
 $restResponse->sendJSON($data, true);
 exit();
