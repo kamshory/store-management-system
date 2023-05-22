@@ -3,9 +3,9 @@ $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND color.name like '%$name%' ";
+    $filter .= " AND color.name LIKE '%$name%' ";
 }
-$sql = "SELECT color.color_id, color.name 
+$sql = "SELECT color.* 
 FROM color 
 WHERE color.active = TRUE 
 $filter

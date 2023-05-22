@@ -3,13 +3,13 @@ $name = $router->getParam('name', true);
 $filter = "";
 if($name != null)
 {
-    $filter .= " AND store.name LIKE '%$name%' ";
+    $filter .= " AND color.name LIKE '%$name%' ";
 }
-$sql = "SELECT store.*
-FROM store 
-WHERE store.active = TRUE 
+$sql = "SELECT color.color_id AS id, color.name 
+FROM color 
+WHERE color.active = TRUE 
 $filter
-ORDER BY store.sort_order ASC 
+ORDER BY color.sort_order ASC 
 ";
 $data = $database->fetchAssocAll($sql);
 $restResponse->sendJSON($data, true);

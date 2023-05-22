@@ -5,7 +5,7 @@ if($name != null)
 {
     $filter .= " AND store.name LIKE '%$name%' ";
 }
-$sql = "SELECT store.*
+$sql = "SELECT store.store_id AS id, store.name 
 FROM store 
 WHERE store.active = TRUE 
 $filter

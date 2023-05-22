@@ -7,28 +7,28 @@ class PicoRouter
      *
      * @var string
      */
-    public $uri = null;
+    private $uri = null;
 
     /**
      * Full path
      *
      * @var string
      */
-    public $full_path = null;
+    private $fullPath = null;
 
     /**
      * Path
      *
      * @var string
      */
-    public $path = null;
+    private $path = null;
 
     /**
      * Module
      *
      * @var string
      */
-    public $module = null;
+    private $module = null;
 
     public $params = array();
     public $arguments = array();
@@ -74,9 +74,10 @@ class PicoRouter
 
     public function parseUri($map, $request_uri, $php_self)
     {
+        $map = $this->reorderMap($map);
         $arr = explode('?', $request_uri);
         $path_only = $arr[0];
-        $this->full_path = $path_only;
+        $this->fullPath = $path_only;
         if(!isset($map) || !is_array($map))
         {
             return null;
@@ -119,6 +120,26 @@ class PicoRouter
         $this->uri = $path;
         $this->module = $module;
         return $this;
+    }
+
+    public function reorderMap($map)
+    {
+        $keys = array_keys($map);
+        $arr = array();
+        foreach($keys as $val)
+        {
+            $arr[$val] = count(explode("/", $val));
+        }
+        $arr2 = $arr;
+        sort($arr);
+        $arr2 = array_reverse($arr2);
+        $result = array();
+        
+        foreach($arr2 as $key=>$value)
+        {
+            $result[$key] = $map[$key];
+        }
+        return $result;
     }
 
     public function parseRegex($map, $path2)
@@ -164,7 +185,7 @@ class PicoRouter
 
     public function parsePattern($pattern, $url)
     {
-        $buffer = preg_replace("(:[A-Za-z_]+)", "*", $pattern);
+        $buffer = preg_replace("(:[A-Za-z_^/]+)", "*", $pattern);
         $buffer = explode("*", $buffer);
         array_pop($buffer);
         $isMatch = true;
@@ -240,5 +261,45 @@ class PicoRouter
         }
         
         return mb_substr($haystack, -$length) === $needle;
+    }
+
+    /**
+     * Get uRI
+     *
+     * @return  string
+     */ 
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * Get full path
+     *
+     * @return  string
+     */ 
+    public function getFullPath()
+    {
+        return $this->fullPath;
+    }
+
+    /**
+     * Get path
+     *
+     * @return  string
+     */ 
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Get module
+     *
+     * @return  string
+     */ 
+    public function getModule()
+    {
+        return $this->module;
     }
 }

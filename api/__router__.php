@@ -10,25 +10,25 @@ $php_self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : null;
 $router = new \Pico\Router\PicoRouter();
 $router->parseUri($routing_map, $request_uri, $php_self);
 
-$database = new \Pico\Database\PicoDatabase(
-	(new \Pico\Database\PicoDatabaseCredentials())->load($databaseConfigs->config_file),
-	new \Pico\Database\PicoDatabaseSyncConfig(
-		$syncConfigs->sync_database_application_dir,
-		$syncConfigs->sync_database_base_dir,
-		$syncConfigs->sync_database_pool_name,
-		$syncConfigs->sync_database_rolling_prefix,
-		$syncConfigs->sync_database_extension,
-		$syncConfigs->sync_database_maximum_length,
-		$syncConfigs->sync_database_delimiter
-	)
-);
-$database->connect();
-
-$restResponse = new \Pico\Api\PicoRestResponse();
-
-if($router->module != null)
+if($router->getModule() != null)
 {
-	$file = __DIR__ . "/". $router->module;
+	$database = new \Pico\Database\PicoDatabase(
+		(new \Pico\Database\PicoDatabaseCredentials())->load($databaseConfigs->config_file),
+		new \Pico\Database\PicoDatabaseSyncConfig(
+			$syncConfigs->sync_database_application_dir,
+			$syncConfigs->sync_database_base_dir,
+			$syncConfigs->sync_database_pool_name,
+			$syncConfigs->sync_database_rolling_prefix,
+			$syncConfigs->sync_database_extension,
+			$syncConfigs->sync_database_maximum_length,
+			$syncConfigs->sync_database_delimiter
+		)
+	);
+	$database->connect();
+	
+	$restResponse = new \Pico\Api\PicoRestResponse();
+
+	$file = __DIR__ . "/". $router->getModule();
 	if(file_exists($file))
 	{
 		require_once $file;

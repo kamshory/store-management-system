@@ -5,7 +5,7 @@ if($name != null)
 {
     $filter .= " AND administrator.name LIKE '%$name%' ";
 }
-$sql = "SELECT administrator.* 
+$sql = "SELECT administrator.administrator_id, administrator.name 
 FROM administrator 
 WHERE administrator.active = TRUE 
 $filter

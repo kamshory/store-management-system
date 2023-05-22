@@ -5,7 +5,7 @@ if($name != null)
 {
     $filter .= " AND item_category.name LIKE '%$name%' ";
 }
-$sql = "SELECT item_category.* 
+$sql = "SELECT item_category.item_category_id AS id, item_category.name 
 FROM item_category 
 WHERE item_category.active = TRUE 
 $filter
