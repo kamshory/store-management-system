@@ -5,6 +5,6 @@ FROM administrator
 WHERE administrator.active = TRUE 
 AND administrator.administrator_id = '$id'
 ";
-$data = $database->fetchAssoc($sql);
+$data = $database->fetchAssoc($sql, array());
 $restResponse->sendJSON($data, true);
 exit();
